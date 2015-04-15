@@ -26,13 +26,13 @@ class ComposerValidator implements MoufStaticValidatorInterface {
         $warnings = array();
         $message = "";
         preg_match_all('/(?<=<error>)(.*?)(?=<\/error>)/', $output, $errors);
-        preg_match('/(?<=<warning>)(.*?)(?=<\/warning>)/', $output, $warnings);
-        if (isset($errors[0])) {
+        preg_match_all('/(?<=<warning>)(.*?)(?=<\/warning>)/', $output, $warnings);
+        if (isset($errors[0]) && $errors[0]) {
             foreach($errors[0] as $error){
                 $message .= $error.'</br>';
             }
             return new MoufValidatorResult(MoufValidatorResult::ERROR, "<strong>Composer</strong>: $message");
-        } elseif (isset($warnings[0])) {
+        } elseif (isset($warnings[0]) && $warnings[0]) {
             foreach($warnings[0] as $warning){
                 $message .= $warning.'</br>';
             }
