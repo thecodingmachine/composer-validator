@@ -1,0 +1,13 @@
+composer.phar
+bin
+config.php
+
+# directories
+vendor/*
+.composer/*
+
+# configuration
+mouf/Mouf.php
+mouf/MoufUI.php
+
+
